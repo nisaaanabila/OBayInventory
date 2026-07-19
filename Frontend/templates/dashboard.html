@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | O'Bay Inventory</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Fontawesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+</head>
+
+<body>
+
+    <!-- ================= Sidebar ================= -->
+
+        <aside class="sidebar">
+
+    <div class="logo">
+
+        <i class="fas fa-mug-hot"></i>
+
+        <span>O'Bay Inventory</span>
+
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="/dashboard">
+                <i class="fas fa-chart-line"></i>
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="/bahan">
+                <i class="fas fa-boxes-stacked"></i>
+                Bahan Baku
+            </a>
+        </li>
+
+        <li>
+            <a href="/barang-masuk">
+                <i class="fas fa-arrow-down"></i>
+                Barang Masuk
+            </a>
+        </li>
+
+        <li>
+            <a href="/produk">
+                <i class="fas fa-mug-hot"></i>
+                Produk & Resep
+            </a>
+        </li>
+
+        {% if role == "OWNER" %}
+        <li>
+            <a href="/vendor">
+                <i class="fas fa-truck"></i>
+                Vendor & PO
+            </a>
+        </li>
+        {% endif %}
+
+        <li>
+            <a href="/penggunaan">
+                <i class="fas fa-utensils"></i>
+                Penggunaan Bahan
+            </a>
+        </li>
+
+    </ul>
+
+    <div class="logout">
+
+        <a href="/logout">
+
+            <i class="fas fa-right-from-bracket"></i>
+
+            Logout
+
+        </a>
+
+    </div>
+
+</aside>
+
+
+    <!-- ================= Main ================= -->
+
+    <main class="content">
+
+        <!-- Navbar -->
+
+        <header class="navbar">
+
+            <div>
+
+                <h2>Dashboard</h2>
+
+                <p>Selamat datang kembali 👋</p>
+
+            </div>
+
+            <div class="user">
+
+                <i class="fas fa-user-circle"></i>
+
+                <div>
+
+                    <strong>{{ nama }}</strong>
+
+                    <small>{{ role }}</small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- Summary -->
+
+        <section class="cards">
+
+            <div class="card">
+
+                <div>
+
+                    <h5>Total Bahan</h5>
+
+                    <h2 id="totalBahan">0</h2>
+
+                </div>
+
+                <i class="fas fa-boxes-stacked"></i>
+
+            </div>
+
+            <div class="card">
+
+                <div>
+
+                    <h5>Total Produk</h5>
+
+                    <h2 id="totalProduk">0</h2>
+
+                </div>
+
+                <i class="fas fa-mug-hot"></i>
+
+            </div>
+
+            <div class="card">
+
+                <div>
+
+                    <h5>Total Vendor</h5>
+
+                    <h2 id="totalVendor">0</h2>
+
+                </div>
+
+                <i class="fas fa-truck"></i>
+
+            </div>
+
+            <div class="card warning">
+
+                <div>
+
+                    <h5>Stok Menipis</h5>
+
+                    <h2 id="stokMenipis">0</h2>
+
+                </div>
+
+                <i class="fas fa-triangle-exclamation"></i>
+
+            </div>
+
+        </section>
+
+
+        <!-- Inventory -->
+
+        <section class="table-card">
+
+            <div class="table-header">
+
+                <h3>
+
+                    <i class="fas fa-circle-exclamation"></i>
+
+                    Critical Inventory
+
+                </h3>
+
+            </div>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Nama Bahan</th>
+
+                        <th>Stok</th>
+
+                        <th>Minimum</th>
+
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="criticalTable">
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/sidebar.css') }}">
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+</body>
+
+</html>

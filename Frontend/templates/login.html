@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Login | O'Bay Inventory</title>
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/login.css') }}">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <!-- ================================= -->
+    <!-- LEFT -->
+    <!-- ================================= -->
+
+    <div class="left-side">
+
+        <img
+        src="https://res.cloudinary.com/db2t7i9pn/image/upload/v1782960873/gambarlogin_m7fxpo.jpg"
+        alt="O'Bay Cafe">
+
+    </div>
+
+
+    <!-- ================================= -->
+    <!-- RIGHT -->
+    <!-- ================================= -->
+
+    <div class="right-side">
+
+        <div class="right-content-wrapper">
+
+            <div class="logo">
+
+                <h1>O'Bay Cafe</h1>
+
+                <p>INVENTORY CONTROL SYSTEM</p>
+
+            </div>
+
+
+            <div class="login-box">
+
+                <h2>Welcome Back!</h2>
+
+                <p class="subtitle">
+
+                    Silakan masuk ke akun Anda
+
+                </p>
+
+
+                <!-- ========================= -->
+                <!-- FORM -->
+                <!-- ========================= -->
+
+                <form id="loginForm">
+
+                    <div class="input-group">
+
+                        <label>Email / Username</label>
+
+                        <div class="input-icon">
+
+                            <i class="fa-solid fa-user"></i>
+
+                            <input
+
+                                type="text"
+
+                                id="email"
+
+                                name="email"
+
+                                placeholder="Masukkan Email atau Username"
+
+                                autocomplete="username"
+
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="input-group">
+
+                        <div class="password-label-row">
+
+                            <label>Password</label>
+
+                            <a
+                            href="#"
+                            class="forgot-link">
+
+                                Forgot Password?
+
+                            </a>
+
+                        </div>
+
+                        <div class="input-icon">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                            <input
+
+                                type="password"
+
+                                id="password"
+
+                                name="password"
+
+                                autocomplete="current-password"
+
+                                placeholder="Masukkan Password"
+
+                                required>
+
+                            <i
+
+                                class="fa-regular fa-eye-slash toggle-password"
+
+                                onclick="viewPassword()">
+
+                            </i>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+
+                        type="submit"
+
+                        class="login-btn">
+
+                        <i class="fa-solid fa-right-to-bracket"></i>
+
+                        Login to Dashboard
+
+                    </button>
+
+                </form>
+
+
+
+                <!-- Divider -->
+
+                <div class="divider">
+
+                    OR
+
+                </div>
+
+
+
+                <!-- GOOGLE LOGIN -->
+
+                <a
+
+                    href="/api/google/login"
+
+                    class="google-login">
+
+                    <img
+
+                    src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg"
+
+                    alt="Google">
+
+                    <span>
+
+                        Login with Google
+
+                    </span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script
+src="{{ url_for('static', filename='js/login.js') }}">
+</script>
+
+
+<script>
+
+function viewPassword(){
+
+    const password=document.getElementById("password");
+
+    const icon=document.querySelector(".toggle-password");
+
+    if(password.type==="password"){
+
+        password.type="text";
+
+        icon.classList.replace("fa-eye-slash","fa-eye");
+
+    }
+
+    else{
+
+        password.type="password";
+
+        icon.classList.replace("fa-eye","fa-eye-slash");
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>

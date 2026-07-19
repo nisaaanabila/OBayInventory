@@ -1,0 +1,267 @@
+/* ==================================
+FONT & GLOBAL RESET
+================================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background: #181611;
+    overflow: hidden;
+}
+
+/* ==================================
+MAIN LAYOUT (SPLIT SCREEN)
+================================== */
+.login-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+/* ==================================
+LEFT PANEL: HERO IMAGE
+================================== */
+.left-side {
+    flex: 1.25;
+    position: relative;
+    overflow: hidden;
+}
+
+.left-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.left-side::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(0,0,0,.2), rgba(0,0,0,.05));
+}
+
+/* ==================================
+RIGHT PANEL: REVISI WARNA & UKURAN ELASTIS
+================================== */
+.right-side {
+    flex: 1;                  /* Membuat pembagian sisi kanan fleksibel mengikuti sisa layar */
+    max-width: 500px;         /* Membatasi lebar maksimal agar tidak terlalu melar */
+    background: #1C1A14;      /* Warna panel gelap latar figma */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;            /* Mengurangi padding sedikit agar ramah di layar laptop */
+    overflow-y: auto;         /* Berjaga-jaga jika layar pendek, form login tetap bisa di-scroll */
+}
+
+/* Pembungkus vertikal agar logo tetap berada di atas login-box */
+.right-content-wrapper {
+    width: 100%;
+    max-width: 360px;         /* Disamakan dengan max-width login box di figma */
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==================================
+LOGO EMAS (DI LUAR KOTAK)
+================================== */
+.logo {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.logo h1 {
+    font-size: 28px;
+    color: #B3924A;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.logo p {
+    margin-top: 4px;
+    color: #6E6858;
+    font-size: 9px;
+    letter-spacing: 3px;
+    font-weight: 500;
+}
+
+/* ==================================
+LOGIN CARD PUTIH
+================================== */
+.login-box {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 32px 28px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.login-box h2 {
+    font-size: 20px;
+    color: #111;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.subtitle {
+    color: #777;
+    margin-bottom: 24px;
+    font-size: 13px;
+}
+
+/* ==================================
+BARIS FORM & STRUKTUR INPUT
+================================== */
+.input-group {
+    margin-bottom: 16px;
+}
+
+.password-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.input-group label {
+    display: block;
+    color: #444;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.forgot-link {
+    font-size: 11px;
+    color: #8A7238;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+.input-icon {
+    position: relative;
+}
+
+.input-icon i:first-child {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 15px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #bbb;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.toggle-password:hover {
+    color: #666;
+}
+
+.input-icon input {
+    width: 100%;
+    height: 46px;
+    padding-left: 44px;
+    padding-right: 44px;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    font-size: 13px;
+    color: #222;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.input-icon input:focus {
+    border-color: #B3924A;
+    box-shadow: 0 0 0 3px rgba(179, 146, 74, 0.15);
+}
+
+/* ==================================
+TOMBOL AKSI & DIVIDER
+================================== */
+button {
+    width: 100%;
+    height: 46px;
+    border: none;
+    border-radius: 10px;
+    background: #6E5E2F;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #544722;
+}
+
+.divider {
+    text-align: center;
+    margin: 16px 0;
+    color: #aaa;
+    font-size: 12px;
+}
+
+/* ==================================
+GOOGLE BUTTON
+================================== */
+.google-login {
+    width: 100%;
+    height: 46px;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #333;
+    font-size: 13px;
+    font-weight: 500;
+    background: #FFFFEF;
+    transition: background 0.2s;
+}
+
+.google-login img {
+    width: 18px;
+}
+
+.google-login:hover {
+    background: #F1F5F9;
+}
+
+/* ==================================
+RESPONSIVE BREAKPOINT (REVISI)
+================================== */
+@media(max-width: 850px){
+    .left-side {
+        display: none; /* Menyembunyikan gambar cafe jika dibuka di layar HP/tablet kecil */
+    }
+    .right-side {
+        width: 100%;
+        max-width: none;
+        padding: 24px;
+    }
+}

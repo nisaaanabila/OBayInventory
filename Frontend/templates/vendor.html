@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vendor & Purchase Order | O'Bay Inventory</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/sidebar.css') }}">
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/vendor.css') }}">
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/po.css') }}">
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- ===========================
+            SIDEBAR
+    ============================ -->
+
+        <aside class="sidebar">
+
+    <div class="logo">
+
+        <i class="fas fa-mug-hot"></i>
+
+        <span>O'Bay Inventory</span>
+
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="/dashboard">
+                <i class="fas fa-chart-line"></i>
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="/bahan">
+                <i class="fas fa-boxes-stacked"></i>
+                Bahan Baku
+            </a>
+        </li>
+
+        <li>
+            <a href="/barang-masuk">
+                <i class="fas fa-arrow-down"></i>
+                Barang Masuk
+            </a>
+        </li>
+
+        <li>
+            <a href="/produk">
+                <i class="fas fa-mug-hot"></i>
+                Produk & Resep
+            </a>
+        </li>
+
+        {% if role == "OWNER" %}
+        <li>
+            <a href="/vendor">
+                <i class="fas fa-truck"></i>
+                Vendor & PO
+            </a>
+        </li>
+        {% endif %}
+
+        <li>
+            <a href="/penggunaan">
+                <i class="fas fa-utensils"></i>
+                Penggunaan Bahan
+            </a>
+        </li>
+
+    </ul>
+
+    <div class="logout">
+
+        <a href="/logout">
+
+            <i class="fas fa-right-from-bracket"></i>
+
+            Logout
+
+        </a>
+
+    </div>
+
+</aside>
+
+    <!-- ===========================
+            MAIN
+    ============================ -->
+
+<main class="main-content">
+
+    <!-- =========================
+            TAB MENU
+    ========================== -->
+
+    <div class="tab-menu">
+
+        <button
+            id="tabVendor"
+            class="tab-btn active">
+
+            <i class="fas fa-truck"></i>
+
+            Vendor
+
+        </button>
+
+        <button
+            id="tabPO"
+            class="tab-btn">
+
+            <i class="fas fa-file-invoice"></i>
+
+            Purchase Order
+
+        </button>
+
+    </div>
+
+    <!-- =========================
+            VENDOR
+    ========================== -->
+
+    <div id="vendorSection">
+
+        <div class="page-header">
+
+            <div>
+
+                <h2>Vendor</h2>
+
+                <p>Kelola vendor supplier bahan baku.</p>
+
+            </div>
+
+            <div style="display:flex;gap:10px;">
+
+                <button
+                    class="btn-primary"
+                    onclick="window.open('/vendor/pdf','_blank')">
+
+                    <i class="fas fa-file-pdf"></i>
+
+                    Export PDF
+
+                </button>
+
+                <button
+                    class="btn-primary"
+                    id="btnTambahVendor">
+
+                    <i class="fas fa-plus"></i>
+
+                    Tambah Vendor
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="toolbar">
+
+            <input
+                type="text"
+                id="searchVendor"
+                placeholder="Cari vendor...">
+
+        </div>
+
+        <div
+            class="vendor-grid"
+            id="vendorList">
+
+        </div>
+
+    </div>
+
+    <!-- =========================
+            PURCHASE ORDER
+    ========================== -->
+
+    <div
+        id="poSection"
+        style="display:none;">
+
+        <div class="page-header">
+
+            <div>
+
+                <h2>Purchase Order</h2>
+
+                <p>Kelola Purchase Order ke Vendor.</p>
+
+            </div>
+
+            <button
+                class="btn-primary"
+                id="btnTambahPO">
+
+                <i class="fas fa-plus"></i>
+
+                Buat Purchase Order
+
+            </button>
+
+        </div>
+
+        <div class="toolbar">
+
+            <input
+                type="text"
+                id="searchPO"
+                placeholder="Cari Purchase Order...">
+
+        </div>
+
+        <table class="table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Kode PO</th>
+
+                    <th>Vendor</th>
+
+                    <th>Tanggal</th>
+
+                    <th>Status</th>
+
+                    <th>Aksi</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="tablePO">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</main>
+
+<!-- =========================================
+            MODAL VENDOR
+========================================== -->
+
+<div
+    class="modal"
+    id="modalVendor">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h3>Vendor</h3>
+
+            <button
+                class="close"
+                onclick="tutupModal()">
+
+                &times;
+
+            </button>
+
+        </div>
+
+        <form id="formVendor">
+
+            <input
+                type="hidden"
+                id="vendorId">
+
+            <div class="form-group">
+
+                <label>ID Vendor</label>
+
+                <input
+                    type="text"
+                    id="id_vendor_tampilan">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Nama Vendor</label>
+
+                <input
+                    type="text"
+                    id="nama_vendor">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Barang Disuplai</label>
+
+                <textarea
+                    id="barang_disuplai"
+                    rows="3"></textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Nomor WhatsApp</label>
+
+                <input
+                    type="text"
+                    id="nomor_telepon">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    id="email">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Status</label>
+
+                <select id="status">
+
+                    <option value="Active">
+
+                        Active
+
+                    </option>
+
+                    <option value="Inactive">
+
+                        Inactive
+
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button
+                class="btn-primary">
+
+                Simpan
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- =========================================
+            MODAL PURCHASE ORDER
+========================================== -->
+
+<div
+    id="modalPO"
+    class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h3>Purchase Order</h3>
+
+            <button
+                class="close"
+                onclick="tutupModalPO()">
+
+                &times;
+
+            </button>
+
+        </div>
+
+        <input
+            type="hidden"
+            id="poId">
+
+        <div class="form-group">
+
+            <label>Vendor</label>
+
+            <select id="vendor_id">
+
+            </select>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Tanggal</label>
+
+            <input
+                type="date"
+                id="tanggal">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Estimasi Pengiriman</label>
+
+            <input
+                type="date"
+                id="estimasi">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Catatan</label>
+
+            <textarea
+                id="catatan"
+                rows="3"></textarea>
+
+        </div>
+
+        <hr>
+
+        <h4>Detail Bahan</h4>
+
+        <button
+            class="btn-primary"
+            type="button"
+            onclick="tambahBarisBahan()">
+
+            Tambah Bahan
+
+        </button>
+
+        <table class="table-detail">
+
+            <thead>
+
+                <tr>
+
+                    <th>Bahan</th>
+                    <th>Qty</th>
+                    <th>Harga</th>
+                    <th>Subtotal</th>
+                    <th></th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="detailBody">
+
+            </tbody>
+
+        </table>
+
+        <br>
+
+        <button
+            class="btn-primary"
+            onclick="simpanPO()">
+
+            Simpan Purchase Order
+
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+const ROLE="{{ role }}";
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="{{ url_for('static', filename='js/vendor.js') }}"></script>
+
+<script src="{{ url_for('static', filename='js/po.js') }}"></script>
+
+</body>
+
+</html>

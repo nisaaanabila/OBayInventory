@@ -1,0 +1,316 @@
+/* ==========================================
+   GOOGLE FONT
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ==========================================
+   RESET
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#F5F3EF;
+    color:#333;
+}
+
+/* ==========================================
+   CONTENT
+========================================== */
+
+.content{
+    margin-left:260px;
+    padding:35px;
+    min-height:100vh;
+}
+
+/* ==========================================
+   PAGE TITLE
+========================================== */
+
+.page-title{
+    font-size:42px;
+    font-weight:700;
+    color:#2C2C2C;
+    margin-bottom:30px;
+}
+
+/* ==========================================
+   CARD
+========================================== */
+
+.card{
+    background:#FFFFFF;
+    border-radius:18px;
+    padding:28px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    margin-bottom:30px;
+}
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.btn-primary{
+
+    background:#B08F35;
+
+    color:#fff;
+
+    border:none;
+
+    padding:13px 22px;
+
+    border-radius:12px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.btn-primary:hover{
+
+    background:#957528;
+
+}
+
+/* tombol merah */
+
+.btn-danger{
+
+    background:#C0392B;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 18px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+.btn-danger:hover{
+
+    background:#A93226;
+
+}
+
+/* ==========================================
+   FORM
+========================================== */
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:22px;
+
+}
+
+.form-group{
+
+    margin-bottom:18px;
+
+}
+
+.form-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+
+    color:#555;
+
+}
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    padding:13px 15px;
+
+    border:1px solid #DDD;
+
+    border-radius:12px;
+
+    outline:none;
+
+    background:white;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+
+    border-color:#B08F35;
+
+    box-shadow:0 0 0 3px rgba(176,143,53,.15);
+
+}
+
+/* ==========================================
+   TABLE
+========================================== */
+
+.table-container{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+table thead{
+
+    background:#F5F3EF;
+
+}
+
+table th{
+
+    padding:18px;
+
+    color:#666;
+
+    font-size:15px;
+
+    text-align:left;
+
+}
+
+table td{
+
+    padding:18px;
+
+    border-bottom:1px solid #EEE;
+
+}
+
+table tbody tr{
+
+    transition:.2s;
+
+}
+
+table tbody tr:hover{
+
+    background:#FAFAFA;
+
+}
+
+/* ==========================================
+   SEARCH
+========================================== */
+
+.search-box{
+
+    width:320px;
+
+    max-width:100%;
+
+}
+
+/* ==========================================
+   MODAL
+========================================== */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.4);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+
+}
+
+.modal.active{
+
+    display:flex;
+
+}
+
+.modal-content{
+
+    width:700px;
+
+    max-width:95%;
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:25px;
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:900px){
+
+    .content{
+
+        margin-left:0;
+
+        padding:20px;
+
+    }
+
+    .page-title{
+
+        font-size:32px;
+
+    }
+
+}

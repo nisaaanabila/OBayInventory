@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Penggunaan Bahan | O'Bay Inventory</title>
+
+    <!-- Sidebar -->
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/sidebar.css') }}">
+
+    <!-- CSS Halaman -->
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/penggunaan.css') }}">
+    
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- ================= SIDEBAR ================= -->
+
+        <aside class="sidebar">
+
+    <div class="logo">
+
+        <i class="fas fa-mug-hot"></i>
+
+        <span>O'Bay Inventory</span>
+
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="/dashboard">
+                <i class="fas fa-chart-line"></i>
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="/bahan">
+                <i class="fas fa-boxes-stacked"></i>
+                Bahan Baku
+            </a>
+        </li>
+
+        <li>
+            <a href="/barang-masuk">
+                <i class="fas fa-arrow-down"></i>
+                Barang Masuk
+            </a>
+        </li>
+
+        <li>
+            <a href="/produk">
+                <i class="fas fa-mug-hot"></i>
+                Produk & Resep
+            </a>
+        </li>
+
+        {% if role == "OWNER" %}
+        <li>
+            <a href="/vendor">
+                <i class="fas fa-truck"></i>
+                Vendor & PO
+            </a>
+        </li>
+        {% endif %}
+
+        <li>
+            <a href="/penggunaan">
+                <i class="fas fa-utensils"></i>
+                Penggunaan Bahan
+            </a>
+        </li>
+
+    </ul>
+
+    <div class="logout">
+
+        <a href="/logout">
+
+            <i class="fas fa-right-from-bracket"></i>
+
+            Logout
+
+        </a>
+
+    </div>
+
+</aside>
+
+    <!-- ================= CONTENT ================= -->
+
+    <main class="main-content">
+
+        <div class="topbar">
+
+            <h1>Penggunaan Bahan</h1>
+
+            <div class="top-right">
+
+                <input
+                    type="text"
+                    id="searchPenggunaan"
+                    placeholder="Cari Produk...">
+
+            </div>
+
+        </div>
+
+        <!-- ================= FORM ================= -->
+
+        <div class="card">
+
+            <h3>Catat Penjualan Produk</h3>
+
+            <form id="penggunaanForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label>Produk</label>
+
+                        <select id="produk" required>
+
+                            <option value="">Pilih Produk</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Qty Terjual</label>
+
+                        <input
+                            type="number"
+                            id="qty"
+                            min="1"
+                            placeholder="Masukkan Qty"
+                            required>
+
+                    </div>
+
+                </div>
+
+                <button type="submit" class="btn-save">
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Simpan Penggunaan
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- ================= TABLE ================= -->
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>No</th>
+
+                        <th>Tanggal</th>
+
+                        <th>Produk</th>
+
+                        <th>Qty Terjual</th>
+
+                        <th>User</th>
+
+                        <th>Aksi</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="penggunaanTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+<!-- ================= MODAL DETAIL ================= -->
+
+<div class="modal" id="detailModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>Detail Penggunaan</h2>
+
+            <button id="closeModal">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+        <table class="detail-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Bahan</th>
+
+                    <th>Qty Awal</th>
+
+                    <th>Digunakan</th>
+
+                    <th>Sisa</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="detailBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/penggunaan.js') }}"></script>
+
+</body>
+</html>

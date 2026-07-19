@@ -1,0 +1,217 @@
+/* ==========================================
+   SIDEBAR
+========================================== */
+
+.sidebar{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:260px;
+    height:100vh;
+
+    background:#27241D;
+
+    color:#fff;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+
+    box-shadow:4px 0 18px rgba(0,0,0,.18);
+
+    z-index:1000;
+
+}
+
+/* ==========================================
+   LOGO
+========================================== */
+
+.logo{
+
+    padding:30px 24px;
+
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    color:#C5A15B;
+
+    font-size:22px;
+    font-weight:700;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.logo i{
+
+    font-size:28px;
+
+    color:#C5A15B;
+
+}
+
+/* ==========================================
+   MENU
+========================================== */
+
+.menu{
+
+    list-style:none;
+
+    margin-top:28px;
+
+    flex:1;
+
+}
+
+.menu li{
+
+    margin:8px 16px;
+
+}
+
+.menu li a{
+
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    padding:15px 18px;
+
+    text-decoration:none;
+
+    color:#E8E8E8;
+
+    border-radius:14px;
+
+    font-size:15px;
+    font-weight:500;
+
+    transition:.25s;
+
+}
+
+.menu li a i{
+
+    width:22px;
+
+    text-align:center;
+
+    font-size:17px;
+
+}
+
+/* Hover */
+
+.menu li:hover a{
+
+    background:#3B352C;
+
+}
+
+/* Active */
+
+.menu li.active a{
+
+    background:#B08F35;
+
+    color:#fff;
+
+    font-weight:600;
+
+    box-shadow:0 8px 20px rgba(176,143,53,.35);
+
+}
+
+/* ==========================================
+   LOGOUT
+========================================== */
+
+.logout{
+
+    padding:20px;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+.logout a{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    background:#B03A2E;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.logout a:hover{
+
+    background:#922B21;
+
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:900px){
+
+    .sidebar{
+
+        position:relative;
+
+        width:100%;
+
+        height:auto;
+
+    }
+
+    .menu{
+
+        display:flex;
+
+        overflow-x:auto;
+
+        margin-top:0;
+
+        padding:10px;
+
+    }
+
+    .menu li{
+
+        flex:0 0 auto;
+
+        margin:0 8px;
+
+    }
+
+    .logout{
+
+        display:none;
+
+    }
+
+}

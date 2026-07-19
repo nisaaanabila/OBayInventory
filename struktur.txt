@@ -1,0 +1,35 @@
+OBayInventory/
+│
+├── app.py
+├── config.py
+├── .env
+├── requirements.txt
+├── vercel.json
+│
+├── database/
+│   └── connection.py
+│
+├── routes/
+│   ├── login.py
+│   ├── dashboard.py
+│   ├── owner.py
+│   ├── staff.py
+│   ├── bahan.py
+│   ├── barang_masuk.py
+│   ├── produk.py
+│   ├── penggunaan.py
+│   └── vendor.py
+│
+├── templates/
+│   ├── login.html
+│   ├── dashboard.html
+│   ├── bahan.html
+│   ├── barang_masuk.html
+│   ├── produk.html
+│   ├── penggunaan.html
+│   └── vendor.html
+│
+└── static/
+    ├── css/
+    ├── js/
+    └── images/

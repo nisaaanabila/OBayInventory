@@ -1,0 +1,642 @@
+/* ===================================================
+   GOOGLE FONT
+=================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#F6F7FB;
+    color:#333;
+}
+
+/* ===================================================
+   LAYOUT
+=================================================== */
+
+.wrapper{
+    display:flex;
+}
+
+.main-content{
+    margin-left:260px;
+    width:calc(100% - 260px);
+    padding:30px;
+}
+
+/* ===================================================
+   HEADER
+=================================================== */
+
+.page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.page-header h2{
+    font-size:28px;
+    color:#3F2D20;
+}
+
+.page-header p{
+    margin-top:5px;
+    color:#777;
+    font-size:14px;
+}
+
+/* ===================================================
+   BUTTON
+=================================================== */
+
+.btn-primary,
+.btn-warning,
+.btn-danger{
+    border:none;
+    border-radius:10px;
+    padding:11px 18px;
+    cursor:pointer;
+    font-size:14px;
+    transition:.3s;
+    font-weight:500;
+}
+
+.btn-primary{
+    background:#6F4E37;
+    color:white;
+}
+
+.btn-primary:hover{
+    background:#5D4032;
+}
+
+.btn-warning{
+    background:#F0AD4E;
+    color:white;
+}
+
+.btn-warning:hover{
+    background:#D9922C;
+}
+
+.btn-danger{
+    background:#D9534F;
+    color:white;
+}
+
+.btn-danger:hover{
+    background:#B93F3B;
+}
+
+/* ===================================================
+   GRID
+=================================================== */
+
+.content-grid{
+    display:grid;
+    grid-template-columns:330px 1fr;
+    gap:25px;
+    align-items:start;
+}
+
+/* ===================================================
+   CARD
+=================================================== */
+
+.card{
+    background:white;
+    border-radius:18px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    padding:22px;
+}
+
+.card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.card-header h3{
+    font-size:18px;
+    color:#6F4E37;
+}
+
+/* ===================================================
+   SEARCH
+=================================================== */
+
+#searchProduk{
+    width:100%;
+    padding:12px 15px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    outline:none;
+    margin-bottom:18px;
+}
+
+#searchProduk:focus{
+    border-color:#6F4E37;
+}
+
+/* ===================================================
+   LIST PRODUK
+=================================================== */
+
+#listProduk{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    max-height:650px;
+    overflow-y:auto;
+}
+
+.product-item{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    padding:12px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:.3s;
+    border:1px solid #eee;
+}
+
+.product-item:hover{
+    background:#F8F4F1;
+}
+
+.product-item.active{
+    background:#EFE5DB;
+    border-color:#6F4E37;
+}
+
+.product-item img{
+    width:60px;
+    height:60px;
+    border-radius:10px;
+    object-fit:cover;
+    background:#eee;
+}
+
+.product-info h4{
+    font-size:15px;
+    color:#333;
+}
+
+.product-info p{
+    color:#777;
+    font-size:13px;
+    margin-top:3px;
+}
+
+/* ===================================================
+   DETAIL
+=================================================== */
+
+.detail-header{
+    display:flex;
+    gap:25px;
+    align-items:center;
+}
+
+.detail-header img{
+    width:140px;
+    height:140px;
+    object-fit:cover;
+    border-radius:16px;
+    background:#eee;
+}
+
+.detail-header h2{
+    color:#6F4E37;
+    margin-bottom:8px;
+}
+
+.detail-header p{
+    color:#666;
+    margin-bottom:8px;
+}
+
+.detail-header h3{
+    color:#28A745;
+    margin-bottom:8px;
+}
+
+#statusProduk{
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:30px;
+    background:#DFF5E5;
+    color:#2E7D32;
+    font-size:13px;
+    font-weight:600;
+}
+
+/* ===================================================
+   ACTION
+=================================================== */
+
+.action-produk{
+    margin-top:20px;
+    display:flex;
+    gap:12px;
+}
+
+/* ===================================================
+   TABLE
+=================================================== */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+thead{
+    background:#F3F0EC;
+}
+
+thead th{
+    padding:15px;
+    text-align:left;
+    color:#6F4E37;
+    font-size:14px;
+}
+
+tbody td{
+    padding:15px;
+    border-bottom:1px solid #eee;
+    font-size:14px;
+}
+
+tbody tr:hover{
+    background:#FAFAFA;
+}
+
+/* ===================================================
+   BADGE STATUS
+=================================================== */
+
+.badge{
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:12px;
+    color:white;
+    font-weight:600;
+}
+
+.badge.aman{
+    background:#28A745;
+}
+
+.badge.menipis{
+    background:#F0AD4E;
+}
+
+.badge.kritis{
+    background:#D9534F;
+}
+
+/* ==========================
+        MODAL
+========================== */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    padding:30px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-content{
+
+    width:100%;
+    max-width:650px;
+
+    max-height:90vh;
+
+    overflow-y:auto;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+
+    animation:modalShow .25s ease;
+}
+
+@keyframes modalShow{
+
+    from{
+
+        opacity:0;
+        transform:translateY(-20px);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:translateY(0);
+
+    }
+
+}
+
+.modal-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:25px;
+}
+
+.modal-header h3{
+
+    font-size:22px;
+    font-weight:600;
+}
+
+.close{
+
+    background:none;
+    border:none;
+
+    font-size:28px;
+    cursor:pointer;
+
+    color:#555;
+}
+
+/* ==========================
+        FORM
+========================== */
+
+.form-group{
+
+    display:flex;
+    flex-direction:column;
+
+    margin-bottom:18px;
+}
+
+.form-group label{
+
+    font-size:14px;
+
+    font-weight:600;
+
+    margin-bottom:8px;
+
+    color:#444;
+}
+
+.form-group input,
+.form-group select{
+
+    width:100%;
+
+    height:52px;
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    padding:0 16px;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus{
+
+    border-color:#8B5E3C;
+
+    box-shadow:0 0 0 3px rgba(139,94,60,.15);
+
+}
+
+/* textarea jika nanti ada */
+.form-group textarea{
+
+    width:100%;
+
+    min-height:110px;
+
+    resize:none;
+
+    padding:14px 16px;
+
+    border:1px solid #ddd;
+
+    border-radius:12px;
+
+    font-size:15px;
+}
+
+/* ==========================
+        BUTTON
+========================== */
+
+.modal-content .btn-primary{
+
+    width:100%;
+
+    height:50px;
+
+    margin-top:15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#8B5E3C;
+
+    color:#fff;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.modal-content .btn-primary:hover{
+
+    background:#6F472B;
+
+}
+
+/* ===================================================
+   FORM
+=================================================== */
+
+form{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+label{
+    font-size:14px;
+    color:#555;
+    font-weight:500;
+}
+
+input,
+select{
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    outline:none;
+    transition:.3s;
+}
+
+input:focus,
+select:focus{
+    border-color:#6F4E37;
+}
+
+/* ===================================================
+   SCROLLBAR
+=================================================== */
+
+#listProduk::-webkit-scrollbar{
+    width:8px;
+}
+
+#listProduk::-webkit-scrollbar-thumb{
+    background:#C7C7C7;
+    border-radius:10px;
+}
+
+/* ===================================================
+   RESPONSIVE
+=================================================== */
+
+@media(max-width:992px){
+
+.content-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.main-content{
+
+    margin-left:0;
+    width:100%;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.page-header{
+
+    flex-direction:column;
+    align-items:flex-start;
+    gap:15px;
+
+}
+
+.detail-header{
+
+    flex-direction:column;
+    align-items:flex-start;
+
+}
+
+.detail-header img{
+
+    width:120px;
+    height:120px;
+
+}
+
+.action-produk{
+
+    flex-wrap:wrap;
+
+}
+
+table{
+
+    display:block;
+    overflow-x:auto;
+
+}
+
+.modal-content{
+
+    width:95%;
+
+}
+
+}
+
+.product-card{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:12px;
+
+    border:1px solid #eee;
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.product-card:hover{
+    background:#F8F4F1;
+}
+
+.product-card img{
+    width:60px;
+    height:60px;
+
+    object-fit:cover;
+
+    border-radius:10px;
+
+    flex-shrink:0;
+}
+
+.product-card .product-info{
+    flex:1;
+}

@@ -1,0 +1,295 @@
+/* ==========================================
+   GOOGLE FONT
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ==========================================
+   RESET
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#F5F3EF;
+    color:#333;
+}
+
+
+/* ==========================================
+   CONTENT
+========================================== */
+
+.content{
+
+    margin-left:260px;
+
+    padding:35px;
+}
+
+/* ==========================================
+   NAVBAR
+========================================== */
+
+.navbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:35px;
+}
+
+.navbar h2{
+
+    font-size:30px;
+
+    color:#333;
+}
+
+.navbar p{
+
+    color:#777;
+
+    margin-top:5px;
+}
+
+.user{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+}
+
+.user i{
+
+    font-size:45px;
+
+    color:#9E8536;
+}
+
+.user strong{
+
+    display:block;
+}
+
+.user small{
+
+    color:#777;
+}
+
+/* ==========================================
+   CARD
+========================================== */
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:25px;
+
+    margin-bottom:35px;
+}
+
+.card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    transition:.3s;
+}
+
+.card:hover{
+
+    transform:translateY(-5px);
+}
+
+.card h5{
+
+    color:#888;
+
+    margin-bottom:8px;
+
+    font-size:15px;
+}
+
+.card h2{
+
+    font-size:34px;
+
+    color:#333;
+}
+
+.card i{
+
+    font-size:40px;
+
+    color:#C5A15B;
+}
+
+.card.warning{
+
+    border-left:6px solid #E74C3C;
+}
+
+/* ==========================================
+   TABLE
+========================================== */
+
+.table-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.table-header{
+
+    margin-bottom:20px;
+}
+
+.table-header h3{
+
+    color:#333;
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+table thead{
+
+    background:#F5F3EF;
+}
+
+table th{
+
+    padding:16px;
+
+    text-align:left;
+
+    color:#666;
+
+    font-size:14px;
+}
+
+table td{
+
+    padding:16px;
+
+    border-bottom:1px solid #EEE;
+}
+
+table tbody tr:hover{
+
+    background:#FAFAFA;
+}
+
+/* ==========================================
+   BADGE
+========================================== */
+
+.badge{
+
+    padding:7px 14px;
+
+    border-radius:30px;
+
+    color:white;
+
+    font-size:12px;
+
+    font-weight:600;
+}
+
+.badge-success{
+
+    background:#27AE60;
+}
+
+.badge-warning{
+
+    background:#F39C12;
+}
+
+.badge-danger{
+
+    background:#E74C3C;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:1100px){
+
+.cards{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:768px){
+
+.sidebar{
+
+left:-260px;
+
+}
+
+.content{
+
+margin-left:0;
+
+padding:20px;
+
+}
+
+.cards{
+
+grid-template-columns:1fr;
+
+}
+
+.navbar{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:20px;
+
+}
+
+}

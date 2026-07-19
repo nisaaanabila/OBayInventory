@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Purchase Order</title>
+
+    <link rel="stylesheet"
+          href="/static/css/po.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- HEADER -->
+
+    <div class="page-header">
+
+        <h2>
+
+            Purchase Order
+
+        </h2>
+
+        <button
+            id="btnTambahPO"
+            class="btn-primary">
+
+            <i class="fa fa-plus"></i>
+
+            Buat Purchase Order
+
+        </button>
+
+    </div>
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchPO"
+            placeholder="Cari Kode PO...">
+
+    </div>
+
+    <!-- TABLE -->
+
+    <table class="table">
+
+        <thead>
+
+        <tr>
+
+            <th>Kode PO</th>
+
+            <th>Vendor</th>
+
+            <th>Tanggal</th>
+
+            <th>Status</th>
+
+            <th>Aksi</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody id="tablePO">
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<!-- ========================================= -->
+<!-- MODAL TAMBAH / EDIT -->
+<!-- ========================================= -->
+
+<div
+    id="modalPO"
+    class="modal">
+
+    <div class="modal-content">
+
+        <span
+            class="close"
+            onclick="tutupModalPO()">
+
+            &times;
+
+        </span>
+
+        <h3>
+
+            Purchase Order
+
+        </h3>
+
+        <input
+            type="hidden"
+            id="poId">
+
+        <label>
+
+            Vendor
+
+        </label>
+
+        <select id="vendor_id">
+
+        </select>
+
+        <label>
+
+            Tanggal
+
+        </label>
+
+        <input
+            type="date"
+            id="tanggal">
+
+        <label>
+
+            Estimasi Pengiriman
+
+        </label>
+
+        <input
+            type="date"
+            id="estimasi">
+
+        <label>
+
+            Catatan
+
+        </label>
+
+        <textarea
+            id="catatan">
+
+        </textarea>
+
+        <hr>
+
+        <h4>
+
+            Detail Bahan
+
+        </h4>
+
+        <button
+            class="btn-secondary"
+            onclick="tambahBarisBahan()">
+
+            Tambah Bahan
+
+        </button>
+
+        <table class="table-detail">
+
+            <thead>
+
+            <tr>
+
+                <th>Bahan</th>
+
+                <th>Qty</th>
+
+                <th>Harga</th>
+
+                <th>Subtotal</th>
+
+                <th></th>
+
+            </tr>
+
+            </thead>
+
+            <tbody id="detailBody">
+
+            </tbody>
+
+        </table>
+
+        <br>
+
+        <button
+            class="btn-primary"
+            onclick="simpanPO()">
+
+            Simpan Purchase Order
+
+        </button>
+
+    </div>
+
+</div>
+
+<script src="/static/js/po.js"></script>
+
+</body>
+
+</html>

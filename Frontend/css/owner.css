@@ -1,0 +1,556 @@
+/* ===========================
+   GOOGLE FONT
+=========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* ===========================
+   COLOR
+=========================== */
+
+:root{
+
+    --primary:#6F4E37;
+    --secondary:#A67B5B;
+    --accent:#D8C3A5;
+    --background:#F8F5F2;
+    --card:#FFFFFF;
+    --success:#6B8E23;
+    --danger:#B22222;
+    --text:#3E2C23;
+    --shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+/* ===========================
+   BODY
+=========================== */
+
+body{
+
+    background:var(--background);
+    color:var(--text);
+
+}
+
+/* ===========================
+   LAYOUT
+=========================== */
+
+.container{
+
+    display:flex;
+    min-height:100vh;
+
+}
+
+/* ===========================
+   SIDEBAR
+=========================== */
+
+.sidebar{
+
+    width:250px;
+    background:var(--primary);
+    color:white;
+    padding:25px 20px;
+
+}
+
+.logo{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:40px;
+
+}
+
+.logo i{
+
+    font-size:28px;
+
+}
+
+.logo h2{
+
+    font-size:20px;
+    font-weight:600;
+
+}
+
+.sidebar ul{
+
+    list-style:none;
+
+}
+
+.sidebar li{
+
+    margin-bottom:12px;
+
+}
+
+.sidebar a{
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    color:white;
+    text-decoration:none;
+
+    padding:12px 15px;
+
+    border-radius:10px;
+
+    transition:.3s;
+
+}
+
+.sidebar a:hover,
+.sidebar .active a{
+
+    background:rgba(255,255,255,.18);
+
+}
+
+/* ===========================
+   CONTENT
+=========================== */
+
+.content{
+
+    flex:1;
+    padding:35px;
+
+}
+
+/* ===========================
+   TOPBAR
+=========================== */
+
+.topbar{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+.topbar h1{
+
+    color:var(--primary);
+    font-size:30px;
+
+}
+
+.top-right{
+
+    display:flex;
+    gap:15px;
+    align-items:center;
+
+}
+
+.top-right input{
+
+    width:280px;
+
+    padding:12px;
+
+    border:1px solid #ddd;
+
+    border-radius:10px;
+
+    outline:none;
+
+}
+
+.top-right input:focus{
+
+    border-color:var(--secondary);
+
+}
+
+.top-right button{
+
+    background:var(--primary);
+    color:white;
+
+    border:none;
+
+    padding:12px 20px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.top-right button:hover{
+
+    background:#5a3f2d;
+
+}
+
+/* ===========================
+   TABLE
+=========================== */
+
+.table-container{
+
+    background:white;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    box-shadow:var(--shadow);
+
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+thead{
+
+    background:var(--primary);
+    color:white;
+
+}
+
+th{
+
+    padding:16px;
+    text-align:center;
+
+}
+
+td{
+
+    padding:15px;
+    text-align:center;
+
+    border-bottom:1px solid #eee;
+
+}
+
+tbody tr:hover{
+
+    background:#faf6f2;
+
+}
+
+/* ===========================
+   STATUS
+=========================== */
+
+.status{
+
+    display:inline-block;
+
+    padding:6px 15px;
+
+    border-radius:20px;
+
+    color:white;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.aktif{
+
+    background:var(--success);
+
+}
+
+.nonaktif{
+
+    background:var(--danger);
+
+}
+
+/* ===========================
+   ACTION
+=========================== */
+
+.action{
+
+    display:flex;
+    justify-content:center;
+    gap:8px;
+
+}
+
+.action button{
+
+    border:none;
+
+    color:white;
+
+    padding:8px 12px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.edit{
+
+    background:#C68B59;
+
+}
+
+.edit:hover{
+
+    background:#af774a;
+
+}
+
+.delete{
+
+    background:var(--danger);
+
+}
+
+.delete:hover{
+
+    background:#8d1b1b;
+
+}
+
+/* ===========================
+   MODAL
+=========================== */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(0,0,0,.45);
+
+    z-index:999;
+
+}
+
+.modal.active{
+
+    display:flex;
+
+}
+
+.modal-content{
+
+    width:520px;
+
+    background:white;
+
+    border-radius:15px;
+
+    padding:30px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.modal-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.modal-header h2{
+
+    color:var(--primary);
+
+}
+
+.modal-header button{
+
+    border:none;
+
+    background:none;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+}
+
+.form-group{
+
+    display:flex;
+    flex-direction:column;
+
+    margin-bottom:18px;
+
+}
+
+.form-group label{
+
+    margin-bottom:8px;
+    font-weight:500;
+
+}
+
+.form-group input,
+.form-group select{
+
+    padding:12px;
+
+    border:1px solid #ddd;
+
+    border-radius:8px;
+
+    outline:none;
+
+}
+
+.form-group input:focus,
+.form-group select:focus{
+
+    border-color:var(--secondary);
+
+}
+
+.modal-footer{
+
+    display:flex;
+    justify-content:flex-end;
+
+    margin-top:15px;
+
+}
+
+.save-btn{
+
+    background:var(--primary);
+
+    color:white;
+
+    border:none;
+
+    padding:12px 25px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.save-btn:hover{
+
+    background:#5a3f2d;
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:992px){
+
+    .sidebar{
+
+        width:210px;
+
+    }
+
+    .topbar{
+
+        flex-direction:column;
+        align-items:flex-start;
+        gap:20px;
+
+    }
+
+    .top-right{
+
+        width:100%;
+        flex-direction:column;
+
+    }
+
+    .top-right input,
+    .top-right button{
+
+        width:100%;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .container{
+
+        flex-direction:column;
+
+    }
+
+    .sidebar{
+
+        width:100%;
+
+    }
+
+    .content{
+
+        padding:20px;
+
+    }
+
+    .table-container{
+
+        overflow-x:auto;
+
+    }
+
+    table{
+
+        min-width:900px;
+
+    }
+
+    .modal-content{
+
+        width:95%;
+
+    }
+
+}

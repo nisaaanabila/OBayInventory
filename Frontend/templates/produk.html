@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Produk & Resep | O'Bay Inventory</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/sidebar.css') }}">
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/produk.css') }}">
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+        <aside class="sidebar">
+
+    <div class="logo">
+
+        <i class="fas fa-mug-hot"></i>
+
+        <span>O'Bay Inventory</span>
+
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="/dashboard">
+                <i class="fas fa-chart-line"></i>
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="/bahan">
+                <i class="fas fa-boxes-stacked"></i>
+                Bahan Baku
+            </a>
+        </li>
+
+        <li>
+            <a href="/barang-masuk">
+                <i class="fas fa-arrow-down"></i>
+                Barang Masuk
+            </a>
+        </li>
+
+        <li>
+            <a href="/produk">
+                <i class="fas fa-mug-hot"></i>
+                Produk & Resep
+            </a>
+        </li>
+
+        {% if role == "OWNER" %}
+        <li>
+            <a href="/vendor">
+                <i class="fas fa-truck"></i>
+                Vendor & PO
+            </a>
+        </li>
+        {% endif %}
+
+        <li>
+            <a href="/penggunaan">
+                <i class="fas fa-utensils"></i>
+                Penggunaan Bahan
+            </a>
+        </li>
+
+    </ul>
+
+    <div class="logout">
+
+        <a href="/logout">
+
+            <i class="fas fa-right-from-bracket"></i>
+
+            Logout
+
+        </a>
+
+    </div>
+
+</aside>
+
+    <main class="main-content">
+
+        <div class="page-header">
+
+            <div>
+
+                <h2>Produk & Resep</h2>
+
+                <p>Kelola produk beserta komposisi bahan bakunya.</p>
+
+            </div>
+
+            {% if role=="OWNER" %}
+            <button class="btn-primary" id="btnTambahProduk">
+
+                    <i class="fas fa-plus"></i>
+
+                    Tambah Produk
+
+            </button>
+            {% endif %}
+
+        </div>
+
+        <div class="content-grid">
+
+            <div class="product-list">
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <h3>Daftar Produk</h3>
+
+                    </div>
+
+                    <input
+                        type="text"
+                        id="searchProduk"
+                        placeholder="Cari produk...">
+
+                    <div id="listProduk">
+
+                        <!-- JS -->
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="detail-panel">
+
+                <div class="card">
+
+                    <div class="detail-header">
+
+                        <img
+                            src="{{ url_for('static', filename='img/no-image.png') }}"
+                            id="gambarProduk">
+
+                        <div>
+
+                            <h2 id="namaProduk">
+
+                                Pilih Produk
+
+                            </h2>
+
+                            <p id="kategoriProduk"></p>
+
+                            <h3 id="hargaProduk"></h3>
+
+                            <span id="statusProduk"></span>
+
+                        </div>
+
+                    </div>
+
+                    {% if role=="OWNER" %}
+                        <div class="action-produk">
+
+                            <button
+                                class="btn-warning"
+                                id="btnEditProduk">
+
+                                <i class="fas fa-pen"></i>
+                                Edit
+
+                            </button>
+
+                            <button
+                                class="btn-danger"
+                                id="btnDeleteProduk">
+
+                                <i class="fas fa-trash"></i>
+                                Hapus
+
+                            </button>
+
+                        </div>
+                        {% endif %}
+
+                </div>
+
+                <div class="card">
+
+                    <div class="card-header">
+
+                        <h3>Komposisi Resep</h3>
+
+                        {% if role=="OWNER" %}
+                            <button
+                                class="btn-primary"
+                                id="btnTambahResep">
+
+                                <i class="fas fa-plus"></i>
+
+                                Tambah Bahan
+
+                            </button>
+                        {% endif %}
+
+                    </div>
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Bahan</th>
+                                <th>Takaran</th>
+                                <th>Satuan</th>
+
+                                {% if role=="OWNER" %}
+                                <th>Aksi</th>
+                                {% endif %}
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="resepList">
+
+                            <tr>
+
+                                {% if role=="OWNER" %}
+                                <td colspan="4"
+                                    style="text-align:center;padding:30px;">
+                                    Pilih produk terlebih dahulu.
+                                </td>
+                                {% else %}
+                                <td colspan="3"
+                                    style="text-align:center;padding:30px;">
+                                    Pilih produk terlebih dahulu.
+                                </td>
+                                {% endif %}
+
+                            </tr>
+
+                        </tbody>
+
+                        </table>
+
+                        {% if role=="STAFF" %}
+
+                        <div id="staffPengeluaran" style="display:none; margin-top:20px;">
+
+                            <h3>Catat Pengeluaran</h3>
+
+                            <div class="form-group">
+
+                                <label>Jumlah Terjual</label>
+
+                                <input
+                                    type="number"
+                                    id="qtyTerjual"
+                                    value="1"
+                                    min="1">
+
+                            </div>
+
+                            <button
+                                id="btnCatatPengeluaran"
+                                class="btn-primary">
+
+                                <i class="fas fa-check"></i>
+                                Catat Pengeluaran
+
+                            </button>
+
+                        </div>
+
+                        {% endif %}
+
+                    </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<div class="modal" id="modalProduk">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h3>Produk</h3>
+
+            <button class="close">&times;</button>
+
+        </div>
+
+        <form id="formProduk">
+
+            <input type="hidden" id="produkId">
+
+            <div class="form-group">
+
+                <label>Kode Produk</label>
+
+                <input type="text" id="kode_produk">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Nama Produk</label>
+
+                <input type="text" id="nama_produk">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Kategori</label>
+
+                <select id="kategori">
+
+                    <option>Makanan</option>
+
+                    <option>Minuman</option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Harga</label>
+
+                <input type="number" id="harga">
+
+            </div>
+            <div class="form-group">
+
+                <label>Status</label>
+
+                <select id="status">
+
+                    <option value="Aktif">
+                        Aktif
+                    </option>
+
+                    <option value="Nonaktif">
+                        Nonaktif
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>URL Gambar</label>
+
+                <input type="text" id="gambar_url">
+
+            </div>
+
+            <button class="btn-primary">
+
+                Simpan
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<div class="modal" id="modalResep">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h3>Tambah Resep</h3>
+
+            <button class="close">&times;</button>
+
+        </div>
+
+        <form id="formResep">
+
+            <input type="hidden" id="resepId">
+
+            <div class="form-group">
+
+                <label>Bahan Baku</label>
+
+                <select id="bahanResep">
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Takaran</label>
+
+                <input
+                    type="number"
+                    step="0.01"
+                    id="takaran">
+
+            </div>
+
+            <button class="btn-primary">
+
+                Simpan
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+
+const ROLE = "{{ role }}";
+
+</script>
+<script src="/Frontend/js/produk.js"></script>
+</body>
+</html>

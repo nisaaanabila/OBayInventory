@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Data Staff | O'Bay Inventory</title>
+
+    <link rel="stylesheet" href="../css/staff.css">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <i class="fa-solid fa-mug-hot"></i>
+
+            <h2>O'Bay Inventory</h2>
+
+        </div>
+
+        <ul>
+
+            <li>
+                <a href="dashboard.html">
+                    <i class="fa-solid fa-chart-line"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="bahan.html">
+                    <i class="fa-solid fa-box"></i>
+                    Bahan Baku
+                </a>
+            </li>
+
+            <li>
+                <a href="barang_masuk.html">
+                    <i class="fa-solid fa-truck"></i>
+                    Barang Masuk
+                </a>
+            </li>
+
+            <li>
+                <a href="produk.html">
+                    <i class="fa-solid fa-mug-saucer"></i>
+                    Produk
+                </a>
+            </li>
+
+            <li>
+                <a href="vendor.html">
+                    <i class="fa-solid fa-store"></i>
+                    Vendor
+                </a>
+            </li>
+
+            <li>
+                <a href="penggunaan.html">
+                    <i class="fa-solid fa-utensils"></i>
+                    Penggunaan
+                </a>
+            </li>
+
+            <li>
+                <a href="owner.html">
+                    <i class="fa-solid fa-user-tie"></i>
+                    Owner
+                </a>
+            </li>
+
+            <li class="active">
+                <a href="#">
+                    <i class="fa-solid fa-users"></i>
+                    Staff
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- ================= CONTENT ================= -->
+
+    <main class="content">
+
+        <div class="topbar">
+
+            <h1>Data Staff</h1>
+
+            <div class="top-right">
+
+                <input
+                    type="text"
+                    id="searchStaff"
+                    placeholder="Cari Staff...">
+
+                <button id="btnTambah">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Tambah Staff
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- ================= TABLE ================= -->
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Nama</th>
+
+                        <th>Username</th>
+
+                        <th>Email</th>
+
+                        <th>No Telepon</th>
+
+                        <th>Status</th>
+
+                        <th>Aksi</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="staffTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+<!-- ================= MODAL ================= -->
+
+<div class="modal" id="staffModal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2 id="modalTitle">
+
+                Tambah Staff
+
+            </h2>
+
+            <button id="closeModal">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+        <form id="staffForm">
+
+            <input
+                type="hidden"
+                id="staffId">
+
+            <div class="form-group">
+
+                <label>Nama Staff</label>
+
+                <input
+                    type="text"
+                    id="nama"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Username</label>
+
+                <input
+                    type="text"
+                    id="username"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    id="email">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>No Telepon</label>
+
+                <input
+                    type="text"
+                    id="telepon">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    id="password">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Status</label>
+
+                <select id="status">
+
+                    <option value="AKTIF">
+
+                        Aktif
+
+                    </option>
+
+                    <option value="NONAKTIF">
+
+                        Non Aktif
+
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    class="save-btn"
+                    type="submit">
+
+                    Simpan
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="../js/staff.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Manajemen Bahan Baku | O'Bay Inventory</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/sidebar.css') }}">
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/bahan.css') }}">
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <!-- ==========================================
+                    SIDEBAR
+    =========================================== -->
+
+    <aside class="sidebar">
+
+    <div class="logo">
+
+        <i class="fas fa-mug-hot"></i>
+
+        <span>O'Bay Inventory</span>
+
+    </div>
+
+    <ul class="menu">
+
+        <li>
+            <a href="/dashboard">
+                <i class="fas fa-chart-line"></i>
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="/bahan">
+                <i class="fas fa-boxes-stacked"></i>
+                Bahan Baku
+            </a>
+        </li>
+
+        <li>
+            <a href="/barang-masuk">
+                <i class="fas fa-arrow-down"></i>
+                Barang Masuk
+            </a>
+        </li>
+
+        <li>
+            <a href="/produk">
+                <i class="fas fa-mug-hot"></i>
+                Produk & Resep
+            </a>
+        </li>
+
+        {% if role == "OWNER" %}
+        <li>
+            <a href="/vendor">
+                <i class="fas fa-truck"></i>
+                Vendor & PO
+            </a>
+        </li>
+        {% endif %}
+
+        <li>
+            <a href="/penggunaan">
+                <i class="fas fa-utensils"></i>
+                Penggunaan Bahan
+            </a>
+        </li>
+
+    </ul>
+
+    <div class="logout">
+
+        <a href="/logout">
+
+            <i class="fas fa-right-from-bracket"></i>
+
+            Logout
+
+        </a>
+
+    </div>
+
+</aside>
+
+    <!-- ==========================================
+                    MAIN CONTENT
+    =========================================== -->
+
+    <main class="main-content">
+
+        <!-- Header -->
+
+        <div class="page-header">
+
+            <div>
+
+                <h2>Manajemen Bahan Baku</h2>
+
+                <p>Kelola seluruh data bahan baku O'Bay Cafe.</p>
+
+            </div>
+
+            <button
+                id="btnTambah"
+                class="btn-primary">
+
+                <i class="fas fa-plus"></i>
+
+                Tambah Bahan
+
+            </button>
+
+        </div>
+
+        <!-- Search -->
+
+        <div class="search-box">
+
+            <i class="fas fa-search"></i>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Cari bahan...">
+
+        </div>
+
+        <!-- ===========================
+                TABLE
+        ============================ -->
+
+        <div class="table-card">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th style="width:90px;">SKU</th>
+
+                        <th>Nama Bahan</th>
+
+                        <th>Satuan</th>
+
+                        <th>Stok</th>
+
+                        <th>Minimum</th>
+
+                        <th>Vendor</th>
+
+                        <th>Status</th>
+
+                        <th style="width:170px;">Aksi</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="tbodyBahan">
+
+                    <tr>
+
+                        <td colspan="8" style="text-align:center;padding:30px;">
+
+                            Memuat data...
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- =====================================================
+                    MODAL TAMBAH / EDIT
+===================================================== -->
+
+<div class="modal" id="modalForm">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h3 id="modalTitle">
+
+                Tambah Bahan
+
+            </h3>
+
+            <button
+                class="close"
+                id="closeModal">
+
+                &times;
+
+            </button>
+
+        </div>
+
+        <form id="formBahan">
+
+            <input
+                type="hidden"
+                id="id">
+
+            <div class="form-group">
+
+                <label>SKU</label>
+
+                <input
+                    type="text"
+                    id="sku"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Nama Bahan</label>
+
+                <input
+                    type="text"
+                    id="nama_bahan"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Satuan</label>
+
+                <input
+                    type="text"
+                    id="satuan"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Stok Saat Ini</label>
+
+                <input
+                    type="number"
+                    step="0.01"
+                    id="stok_saat_ini"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Minimum Stok</label>
+
+                <input
+                    type="number"
+                    step="0.01"
+                    id="minimum_stok"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Vendor</label>
+
+                <select id="vendor_id">
+
+                    <option value="">
+
+                        Tanpa Vendor
+
+                    </option>
+
+                </select>
+
+            </div>
+                        <div class="modal-footer">
+
+                <button
+                    type="submit"
+                    class="btn-primary">
+
+                    <i class="fas fa-save"></i>
+
+                    Simpan
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+                    MODAL DELETE
+===================================================== -->
+
+<div class="modal" id="modalDelete">
+
+    <div class="modal-content delete-box">
+
+        <h3>
+
+            Hapus Data
+
+        </h3>
+
+        <p>
+
+            Apakah Anda yakin ingin menghapus bahan ini?
+
+        </p>
+
+        <div class="delete-action">
+
+            <button
+                class="btn-danger"
+                id="btnDelete">
+
+                <i class="fas fa-trash"></i>
+
+                Hapus
+
+            </button>
+
+            <button
+                class="btn-secondary"
+                id="cancelDelete">
+
+                Batal
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+                JAVASCRIPT
+========================================== -->
+
+<script src="{{ url_for('static', filename='js/bahan.js') }}"></script>
+
+</body>
+
+</html>
